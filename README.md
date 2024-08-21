@@ -1,70 +1,57 @@
-# Getting Started with Create React App
+## Nome: `José Henrique Vieira Batista`
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Para executar este projeto:
 
-## Available Scripts
+1. Entre pasta hotwheels-crud no terminal:
 
-In the project directory, you can run:
+```
+cd hotwheels-crud
+```
 
-### `npm start`
+2. Rode npm install para instalar as dependências do projeto:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+```
+npm install
+```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. E em seguida, npm start, para iniciar a execução do projeto.
 
-### `npm test`
+```
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+Após execução do projeto, este é o resultado esperado no navegador:
+![Gif mostrando o resultado esperado ao rodar este projeto](./resultado.gif)
 
-### `npm run build`
+## Introdução
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Este projeto é uma aplicação CRUD básica para gerenciar uma lista de carros. Utiliza Create React App como base e inclui funcionalidades para adicionar, listar e remover carros. A navegação entre as páginas é gerenciada com React Router, e feedbacks visuais são fornecidos ao usuário para as ações de adicionar e remover carros.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Componentes
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+Os componentes estão no diretório `./src/components` e eles possuem as seguintes características:
 
-### `npm run eject`
+-   NavBar:
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+    -   Descrição: Este componente utiliza Link do React Router para exibir os links de navegação da aplicação. A sequência dos links é: Home, Sobre, Carros, Adicionar Carro.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+-   CarList:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+    -   `props`
+        -   `cars`: um array contendo a lista de carros a ser exibida;
+        -   `removeCar`: função callback que é chamada quando o botão "Excluir" é clicado para remover um carro da lista
+    -   Descrição: Este componente renderiza a lista de carros e permite excluir itens. Inclui um link para acessar o formulário de adicionar carros.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+-   CarForm:
+    -   `props`
+        -   `addCar`: função callback que é chamada quando o formulário é enviado para adicionar um novo carro.
+    -   Descrição: Este componente contém um formulário com campos para Nome, Marca, Cor e Ano do carro. Permite adicionar um carro à lista.
 
-## Learn More
+## Feedback Visual
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+-   Adicionar Carro: Mensagem de sucesso exibida em verde ao adicionar um carro.
+-   Remover Carro: Mensagem de sucesso exibida em vermelho ao remover um carro.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Conclusão
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Este projeto demonstra a construção de uma aplicação CRUD básica com React e React Router, oferecendo uma visão prática de como gerenciar o estado da aplicação e fornecer feedbacks visuais ao usuário. É um exemplo útil para o desenvolvimento de projetos mais complexos em ReactJS.
