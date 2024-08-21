@@ -54,4 +54,4 @@ Os componentes estão no diretório `./src/components` e eles possuem as seguint
 
 ## Conclusão
 
-Este projeto demonstra a construção de uma aplicação CRUD básica com React e React Router, oferecendo uma visão prática de como gerenciar o estado da aplicação e fornecer feedbacks visuais ao usuário. É um exemplo útil para o desenvolvimento de projetos mais complexos em ReactJS.
+Este projeto demonstra a construção de uma aplicação CRUD básica com React e React Router, oferecendo uma visão prática de como gerenciar o estado da aplicação e fornecer feedbacks visuais ao usuário. É um exemplo útil para o desenvolvimento de projetos mais complexos em ReactJS. Feito para trabalho da matéria de Desenvolvimento de Sistemas frontend da PUC-RS.
