@@ -25,7 +25,7 @@ Após execução do projeto, este é o resultado esperado no navegador:
 
 ## Introdução
 
-Este projeto é uma aplicação CRUD básica para gerenciar uma lista de carros. Utiliza Create React App como base e inclui funcionalidades para adicionar, listar e remover carros. A navegação entre as páginas é gerenciada com React Router, e feedbacks visuais são fornecidos ao usuário para as ações de adicionar e remover carros.
+Feito para um trabalho da matéria de Desenvolvimento de Sistemas frontend da PUC-RS. Este projeto é uma aplicação CRUD básica para gerenciar uma lista de carros. Utiliza Create React App como base e inclui funcionalidades para adicionar, listar e remover carros. A navegação entre as páginas é gerenciada com React Router, e feedbacks visuais são fornecidos ao usuário para as ações de adicionar e remover carros.
 
 ## Componentes
 
@@ -54,4 +54,4 @@ Os componentes estão no diretório `./src/components` e eles possuem as seguint
 
 ## Conclusão
 
-Este projeto demonstra a construção de uma aplicação CRUD básica com React e React Router, oferecendo uma visão prática de como gerenciar o estado da aplicação e fornecer feedbacks visuais ao usuário. É um exemplo útil para o desenvolvimento de projetos mais complexos em ReactJS. Feito para trabalho da matéria de Desenvolvimento de Sistemas frontend da PUC-RS.
+Este projeto demonstra a construção de uma aplicação CRUD básica com React e React Router, oferecendo uma visão prática de como gerenciar o estado da aplicação e fornecer feedbacks visuais ao usuário. É um exemplo útil para o desenvolvimento de projetos mais complexos em ReactJS.
