@@ -1,11 +1,22 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import styles from "./CarForm.module.css";
 
-function CarForm({ addCar }) {
+function CarForm({ addCar, editingCar }) {
     const [name, setName] = useState("");
     const [brand, setBrand] = useState("");
     const [color, setColor] = useState("");
     const [year, setYear] = useState("");
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        if (editingCar) {
+            setName(editingCar.name);
+            setBrand(editingCar.brand);
+            setColor(editingCar.color);
+            setYear(editingCar.year);
+        }
+    }, [editingCar]);
 
     const handleSubmit = (e) => {
         e.preventDefault();
@@ -15,6 +26,7 @@ function CarForm({ addCar }) {
             setBrand("");
             setColor("");
             setYear("");
+            navigate("/cars");
         }
     };
 
@@ -49,7 +61,7 @@ function CarForm({ addCar }) {
                 className={styles.input}
             />
             <button type="submit" className={styles.button}>
-                Adicionar Carro
+                {editingCar ? "Atualizar Carro" : "Adicionar Carro"}
             </button>
         </form>
     );

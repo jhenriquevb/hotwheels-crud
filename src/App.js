@@ -9,14 +9,28 @@ import styles from "./App.module.css";
 
 function App() {
     const [cars, setCars] = useState([]);
+    const [editingCar, setEditingCar] = useState(null);
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
 
     const addCar = (car) => {
-        setCars([...cars, car]);
-        setMessage("Carro adicionado com sucesso!");
+        if (editingCar !== null) {
+            const updatedCars = cars.map((c, index) =>
+                index === editingCar ? car : c
+            );
+            setCars(updatedCars);
+            setEditingCar(null);
+            setMessage("Carro atualizado com sucesso!");
+        } else {
+            setCars([...cars, car]);
+            setMessage("Carro adicionado com sucesso!");
+        }
         setMessageType("success");
         clearMessage();
+    };
+
+    const editCar = (index) => {
+        setEditingCar(index);
     };
 
     const removeCar = (indexToRemove) => {
@@ -45,9 +59,23 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route
                     path="/cars"
-                    element={<CarList cars={cars} removeCar={removeCar} />}
+                    element={
+                        <CarList
+                            cars={cars}
+                            removeCar={removeCar}
+                            editCar={editCar}
+                        />
+                    }
                 />
-                <Route path="/add-car" element={<CarForm addCar={addCar} />} />
+                <Route
+                    path="/add-car"
+                    element={
+                        <CarForm
+                            addCar={addCar}
+                            editingCar={cars[editingCar]}
+                        />
+                    }
+                />
                 <Route path="/about" element={<About />} />
             </Routes>
         </Router>

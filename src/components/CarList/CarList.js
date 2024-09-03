@@ -1,8 +1,15 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./CarList.module.css";
 
-function CarList({ cars, removeCar }) {
+function CarList({ cars, removeCar, editCar }) {
+    const navigate = useNavigate();
+
+    const handleEdit = (index) => {
+        editCar(index);
+        navigate("/add-car");
+    };
+
     return (
         <div className={styles.container}>
             <h2 className={styles.title}>Lista de Carros</h2>
@@ -15,12 +22,20 @@ function CarList({ cars, removeCar }) {
                             <strong>Cor:</strong> {car.color} <br />
                             <strong>Ano:</strong> {car.year}
                         </div>
-                        <button
-                            className={styles.deleteButton}
-                            onClick={() => removeCar(index)}
-                        >
-                            Excluir
-                        </button>
+                        <div className={styles.buttonGroup}>
+                            <button
+                                className={styles.editButton}
+                                onClick={() => handleEdit(index)}
+                            >
+                                Editar
+                            </button>
+                            <button
+                                className={styles.deleteButton}
+                                onClick={() => removeCar(index)}
+                            >
+                                Excluir
+                            </button>
+                        </div>
                     </li>
                 ))}
             </ul>
