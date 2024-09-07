@@ -7,6 +7,7 @@ import CarList from "./components/CarList/CarList";
 import CarForm from "./components/CarForm/CarForm";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
+import api from "./services/api";
 
 const theme = createTheme({
     typography: {
@@ -20,30 +21,46 @@ function App() {
     const [message, setMessage] = useState("");
     const [messageType, setMessageType] = useState("");
 
-    const addCar = (car) => {
-        if (editingCar !== null) {
-            const updatedCars = cars.map((c, index) =>
-                index === editingCar ? car : c
-            );
-            setCars(updatedCars);
-            setEditingCar(null);
-            setMessage("Carro atualizado com sucesso!");
-        } else {
-            setCars([...cars, car]);
-            setMessage("Carro adicionado com sucesso!");
+    const fetchCars = async () => {
+        try {
+            const response = await api.getCars();
+            setCars(response.data);
+        } catch (error) {
+            setMessage("Erro ao buscar carros.");
+            setMessageType("error");
         }
-        setMessageType("success");
+    };
+
+    const addCar = async (car) => {
+        try {
+            if (editingCar !== null) {
+                await api.updateCar({ ...car, id: editingCar.id });
+                setEditingCar(null);
+                setMessage("Carro atualizado com sucesso!");
+                setMessageType("success");
+            } else {
+                await api.addCar(car);
+                setMessage("Carro adicionado com sucesso!");
+                setMessageType("success");
+            }
+            await fetchCars();
+        } catch (error) {
+            setMessage("Erro ao salvar carro.");
+            setMessageType("error");
+        }
         clearMessage();
     };
 
-    const editCar = (index) => {
-        setEditingCar(index);
-    };
-
-    const removeCar = (indexToRemove) => {
-        setCars(cars.filter((_, index) => index !== indexToRemove));
-        setMessage("Carro removido com sucesso!");
-        setMessageType("warning");
+    const removeCar = async (id) => {
+        try {
+            await api.removeCar(id);
+            setCars(cars.filter((car) => car.id !== id));
+            setMessage("Carro removido com sucesso!");
+            setMessageType("warning");
+        } catch (error) {
+            setMessage("Erro ao excluir carro.");
+            setMessageType("error");
+        }
         clearMessage();
     };
 
@@ -76,9 +93,8 @@ function App() {
                         path="/cars"
                         element={
                             <CarList
-                                cars={cars}
+                                setEditingCar={setEditingCar}
                                 removeCar={removeCar}
-                                editCar={editCar}
                             />
                         }
                     />
@@ -86,8 +102,9 @@ function App() {
                         path="/add-car"
                         element={
                             <CarForm
+                                editingCar={editingCar}
+                                setEditingCar={setEditingCar}
                                 addCar={addCar}
-                                editingCar={cars[editingCar]}
                             />
                         }
                     />
