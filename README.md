@@ -1,27 +1,65 @@
+# Projeto Hotwheels
+
 ## Nome: `José Henrique Vieira Batista`
 
-Para executar este projeto:
+## Como Executar o Projeto Frontend
 
-1. Entre pasta hotwheels-crud no terminal:
+Para executar este projeto frontend, siga os passos abaixo:
 
-```
-cd hotwheels-crud
-```
+1. Entre na pasta do projeto no terminal:
 
-2. Rode npm install para instalar as dependências do projeto:
+    ```bash
+    cd hotwheels-crud
+    ```
 
-```
-npm install
-```
+2. Rode `npm install` para instalar as dependências do projeto:
 
-3. E em seguida, npm start, para iniciar a execução do projeto.
+    ```bash
+    npm install
+    ```
 
-```
-npm start
-```
+3. Em seguida, inicie o servidor de desenvolvimento com:
 
-Após execução do projeto, este é o resultado esperado no navegador:
-![Gif mostrando o resultado esperado ao rodar este projeto](./resultado.gif)
+    ```bash
+    npm start
+    ```
+
+## Instalação e Execução da API
+
+Este projeto frontend se comunica com uma API backend para gerenciar os dados dos carros. A API pode ser encontrada no repositório [hotwheels-api](https://github.com/adsPucrsOnline/DesenvolvimentoFrontend/) (branch `main`). Siga os passos abaixo para instalar e executar a API:
+
+1. Clone o repositório da API localmente com o seguinte comando:
+
+    ```bash
+    git clone https://github.com/adsPucrsOnline/DesenvolvimentoFrontend.git
+    ```
+
+2. Navegue até o diretório da API:
+
+    ```bash
+    cd DesenvolvimentoFrontend/hotwheels-api
+    ```
+
+3. Instale as dependências necessárias para a API:
+
+    ```bash
+    npm install
+    ```
+
+4. Inicie o servidor da API:
+
+    ```bash
+    npm start
+    ```
+
+A API estará disponível em `http://localhost:5000` (ou na porta configurada no projeto).
+
+Após a execução do projeto, este é o resultado esperado no navegador:
+
+![Home](images/home.png)
+![About](images/about.png)
+![CarList](images/carlist.png)
+![CarForm](images/carform.png)
 
 ## Introdução
 
@@ -29,28 +67,56 @@ Feito para um trabalho da matéria de Desenvolvimento de Sistemas frontend da PU
 
 ## Componentes
 
-Os componentes estão no diretório `./src/components` e eles possuem as seguintes características:
+Os componentes estão no diretório `./src/components` e possuem as seguintes características:
 
--   NavBar:
+-   **NavBar**:
 
-    -   Descrição: Este componente utiliza Link do React Router para exibir os links de navegação da aplicação. A sequência dos links é: Home, Sobre, Carros, Adicionar Carro.
+    -   **Descrição**: Este componente utiliza `Link` do React Router para exibir os links de navegação da aplicação. A sequência dos links é: Home, Sobre, Carros, Adicionar Carro.
 
--   CarList:
+-   **CarList**:
 
-    -   `props`
+    -   **Props**:
         -   `cars`: um array contendo a lista de carros a ser exibida;
-        -   `removeCar`: função callback que é chamada quando o botão "Excluir" é clicado para remover um carro da lista
-    -   Descrição: Este componente renderiza a lista de carros e permite excluir itens. Inclui um link para acessar o formulário de adicionar carros.
+        -   `removeCar`: função callback que é chamada quando o botão "Excluir" é clicado para remover um carro da lista.
+    -   **Descrição**: Este componente renderiza a lista de carros e permite excluir itens. Inclui um link para acessar o formulário de adicionar carros.
 
--   CarForm:
-    -   `props`
+-   **CarForm**:
+
+    -   **Props**:
         -   `addCar`: função callback que é chamada quando o formulário é enviado para adicionar um novo carro.
-    -   Descrição: Este componente contém um formulário com campos para Nome, Marca, Cor e Ano do carro. Permite adicionar um carro à lista.
+    -   **Descrição**: Este componente contém um formulário com campos para Nome, Marca, Cor e Ano do carro. Permite adicionar um carro à lista.
+
+-   **Home**:
+
+    -   **Descrição**: Componente de página inicial com uma breve introdução ao aplicativo.
+
+-   **About**:
+    -   **Descrição**: Componente de página "Sobre" que fornece informações sobre o aplicativo.
 
 ## Feedback Visual
 
--   Adicionar Carro: Mensagem de sucesso exibida em verde ao adicionar um carro.
--   Remover Carro: Mensagem de sucesso exibida em vermelho ao remover um carro.
+-   **Adicionar Carro**: Mensagem de sucesso exibida em verde ao adicionar um carro.
+-   **Remover Carro**: Mensagem de sucesso exibida em vermelho ao remover um carro.
+
+## Testes
+
+Os testes são uma parte essencial do desenvolvimento deste projeto. Eles garantem que os componentes funcionem conforme o esperado.
+
+1. Para executar os testes, utilize o seguinte comando:
+
+    ```bash
+    npm test
+    ```
+
+Isso executará os testes definidos nos arquivos de teste dentro do diretório `./src/components`. O Jest é utilizado para testar a funcionalidade dos componentes React, e você verá um relatório com o resultado dos testes.
+
+### Estrutura dos Testes
+
+Os testes são configurados para verificar:
+
+-   **Componentes de Renderização**: Confirma se os componentes renderizam corretamente com as props fornecidas.
+-   **Funções de Callback**: Verifica se funções como `addCar` e `removeCar` são chamadas corretamente e interagem como esperado.
+-   **Feedback Visual**: Confirma se as mensagens de feedback são exibidas corretamente após ações do usuário.
 
 ## Conclusão
 
