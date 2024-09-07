@@ -1,12 +1,16 @@
 import React from "react";
-import styles from "./Home.module.css";
+import { Container, Typography } from "@mui/material";
 
 function Home() {
     return (
-        <div className={styles.container}>
-            <h1 className={styles.mainText}>Página Inicial</h1>
-            <p className={styles.subText}>Bem-vindo ao CRUD de HotWheels!</p>
-        </div>
+        <Container>
+            <Typography variant="h2" gutterBottom>
+                Página Inicial
+            </Typography>
+            <Typography variant="body1">
+                Bem-vindo ao CRUD de HotWheels!
+            </Typography>
+        </Container>
     );
 }
 

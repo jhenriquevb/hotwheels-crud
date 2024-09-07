@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import styles from "./CarForm.module.css";
+import { TextField, Button, Container, Box } from "@mui/material";
 
 function CarForm({ addCar, editingCar }) {
     const [name, setName] = useState("");
@@ -22,48 +22,47 @@ function CarForm({ addCar, editingCar }) {
         e.preventDefault();
         if (name && brand && color && year) {
             addCar({ name, brand, color, year });
-            setName("");
-            setBrand("");
-            setColor("");
-            setYear("");
             navigate("/cars");
         }
     };
 
     return (
-        <form onSubmit={handleSubmit} className={styles.form}>
-            <input
-                type="text"
-                placeholder="Nome do Carro"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-                className={styles.input}
-            />
-            <input
-                type="text"
-                placeholder="Marca"
-                value={brand}
-                onChange={(e) => setBrand(e.target.value)}
-                className={styles.input}
-            />
-            <input
-                type="text"
-                placeholder="Cor"
-                value={color}
-                onChange={(e) => setColor(e.target.value)}
-                className={styles.input}
-            />
-            <input
-                type="number"
-                placeholder="Ano"
-                value={year}
-                onChange={(e) => setYear(e.target.value)}
-                className={styles.input}
-            />
-            <button type="submit" className={styles.button}>
-                {editingCar ? "Atualizar Carro" : "Adicionar Carro"}
-            </button>
-        </form>
+        <Container maxWidth="sm">
+            <Box
+                component="form"
+                onSubmit={handleSubmit}
+                sx={{ display: "flex", flexDirection: "column", gap: 2 }}
+            >
+                <TextField
+                    label="Nome do Carro"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Marca"
+                    value={brand}
+                    onChange={(e) => setBrand(e.target.value)}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Cor"
+                    value={color}
+                    onChange={(e) => setColor(e.target.value)}
+                    variant="outlined"
+                />
+                <TextField
+                    label="Ano"
+                    type="number"
+                    value={year}
+                    onChange={(e) => setYear(e.target.value)}
+                    variant="outlined"
+                />
+                <Button type="submit" variant="contained" color="primary">
+                    {editingCar ? "Atualizar Carro" : "Adicionar Carro"}
+                </Button>
+            </Box>
+        </Container>
     );
 }
 

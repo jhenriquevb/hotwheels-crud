@@ -1,11 +1,18 @@
 import React, { useState } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import { Snackbar, Alert } from "@mui/material";
 import NavBar from "./components/NavBar/NavBar";
 import CarList from "./components/CarList/CarList";
 import CarForm from "./components/CarForm/CarForm";
 import Home from "./components/Home/Home";
 import About from "./components/About/About";
-import styles from "./App.module.css";
+
+const theme = createTheme({
+    typography: {
+        fontFamily: "'Poppins', 'Roboto', sans-serif",
+    },
+});
 
 function App() {
     const [cars, setCars] = useState([]);
@@ -48,37 +55,46 @@ function App() {
     };
 
     return (
-        <Router>
-            <NavBar />
-            {message && (
-                <div className={`${styles.message} ${styles[messageType]}`}>
-                    {message}
-                </div>
-            )}
-            <Routes>
-                <Route path="/" element={<Home />} />
-                <Route
-                    path="/cars"
-                    element={
-                        <CarList
-                            cars={cars}
-                            removeCar={removeCar}
-                            editCar={editCar}
-                        />
-                    }
-                />
-                <Route
-                    path="/add-car"
-                    element={
-                        <CarForm
-                            addCar={addCar}
-                            editingCar={cars[editingCar]}
-                        />
-                    }
-                />
-                <Route path="/about" element={<About />} />
-            </Routes>
-        </Router>
+        <ThemeProvider theme={theme}>
+            <Router>
+                <NavBar />
+                {message && (
+                    <Snackbar
+                        open={Boolean(message)}
+                        autoHideDuration={3000}
+                        onClose={clearMessage}
+                        anchorOrigin={{ vertical: "top", horizontal: "center" }}
+                    >
+                        <Alert onClose={clearMessage} severity={messageType}>
+                            {message}
+                        </Alert>
+                    </Snackbar>
+                )}
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route
+                        path="/cars"
+                        element={
+                            <CarList
+                                cars={cars}
+                                removeCar={removeCar}
+                                editCar={editCar}
+                            />
+                        }
+                    />
+                    <Route
+                        path="/add-car"
+                        element={
+                            <CarForm
+                                addCar={addCar}
+                                editingCar={cars[editingCar]}
+                            />
+                        }
+                    />
+                    <Route path="/about" element={<About />} />
+                </Routes>
+            </Router>
+        </ThemeProvider>
     );
 }
 

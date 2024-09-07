@@ -1,6 +1,13 @@
 import React from "react";
-import { Link, useNavigate } from "react-router-dom";
-import styles from "./CarList.module.css";
+import {
+    Card,
+    CardContent,
+    Typography,
+    Button,
+    Container,
+    Grid,
+} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 function CarList({ cars, removeCar, editCar }) {
     const navigate = useNavigate();
@@ -11,38 +18,42 @@ function CarList({ cars, removeCar, editCar }) {
     };
 
     return (
-        <div className={styles.container}>
-            <h2 className={styles.title}>Lista de Carros</h2>
-            <ul className={styles.carList}>
+        <Container>
+            <Typography variant="h4" gutterBottom>
+                Lista de Carros
+            </Typography>
+            <Grid container spacing={2}>
                 {cars.map((car, index) => (
-                    <li key={index} className={styles.carItem}>
-                        <div>
-                            <strong>Nome:</strong> {car.name} <br />
-                            <strong>Marca:</strong> {car.brand} <br />
-                            <strong>Cor:</strong> {car.color} <br />
-                            <strong>Ano:</strong> {car.year}
-                        </div>
-                        <div className={styles.buttonGroup}>
-                            <button
-                                className={styles.editButton}
-                                onClick={() => handleEdit(index)}
-                            >
-                                Editar
-                            </button>
-                            <button
-                                className={styles.deleteButton}
-                                onClick={() => removeCar(index)}
-                            >
-                                Excluir
-                            </button>
-                        </div>
-                    </li>
+                    <Grid item xs={12} sm={6} md={4} key={index}>
+                        <Card>
+                            <CardContent>
+                                <Typography variant="h6">
+                                    Nome: {car.name}
+                                </Typography>
+                                <Typography>Marca: {car.brand}</Typography>
+                                <Typography>Cor: {car.color}</Typography>
+                                <Typography>Ano: {car.year}</Typography>
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    onClick={() => handleEdit(index)}
+                                    sx={{ marginRight: 1 }}
+                                >
+                                    Editar
+                                </Button>
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    onClick={() => removeCar(index)}
+                                >
+                                    Excluir
+                                </Button>
+                            </CardContent>
+                        </Card>
+                    </Grid>
                 ))}
-            </ul>
-            <div className={styles.addCarLink}>
-                <Link to="/add-car">Adicionar carro</Link>
-            </div>
-        </div>
+            </Grid>
+        </Container>
     );
 }
 
